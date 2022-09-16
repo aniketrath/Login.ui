@@ -2,7 +2,7 @@ import React from 'react'
 
 const Dashoard = () => {
     return (
-        <div className='w-1/3 py-4 pr-32'>
+        <div className='w-1/3 py-24 '>
             <div className='py-2'>
 
                 <h1 className='text-[4rem] font-bold'>

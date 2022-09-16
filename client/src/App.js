@@ -5,13 +5,15 @@ import Navigation from './Components/Navigation';
 import Body from './Components/Body';
 //Body Import
 import Dashoard from './Components/BodyComponents/Dashoard';
-
+import Quote from './Components/BodyComponents/Quote';
+import LoginPage from './Components/BodyComponents/LoginPage'
 function App() {
   return (
     <Background>
       <Navigation />
       <Body>
-        <Dashoard />
+        <LoginPage />
+        <Quote />
       </Body>
     </Background>
   );
