@@ -40,7 +40,7 @@ const LoginPage = () => {
 
                 <div className='py-4 flex '>
                     <h2 className='text-center'>Don't have an Account ? &nbsp;</h2>
-                    <a href="/"> Sign up</a>
+                    <a href="/"> Sign up.</a>
                 </div>
             </form>
         </div >
