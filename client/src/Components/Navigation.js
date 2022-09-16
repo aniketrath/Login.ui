@@ -10,8 +10,7 @@ const Navigation = () => {
         </div>
         <h1 className=' text-2xl font-bold mx-4 my-2 pr-20'>Login.uI</h1>
       </div>
-      <div className="flex py-3">
-        <a className='text-xl px-20 hover:text-gray-50' href="/">Home</a>
+      <div className="flex py-2">
         <a className='text-xl px-20 hover:text-gray-50' href="/">Login</a>
       </div>
     </div>
