@@ -4,14 +4,14 @@ import Background from './Components/Background';
 import Navigation from './Components/Navigation';
 import Body from './Components/Body';
 //Body Import
-import SignUpPage from './Components/BodyComponents/SignUpPage';
+import Dashoard from './Components/BodyComponents/Dashoard';
 
 function App() {
   return (
     <Background>
       <Navigation />
       <Body>
-        <SignUpPage />
+        <Dashoard />
       </Body>
     </Background>
   );
