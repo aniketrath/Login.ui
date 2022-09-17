@@ -1,5 +1,20 @@
 import React from 'react'
 
+class loginFunction {
+    constructor() {
+        this.state = {
+            user: [],
+        }
+    }
+    componentDidMount() {
+        fetch('/server/login')
+            .then(res => res.json)
+            .then(userDetails => this.setState({ userDetails },
+                console.log(userDetails),
+                this.userDataLog(userDetails)));
+    }
+}
+
 const LoginPage = () => {
     return (
         <div className='w-1/3 py-20 pr-28'>

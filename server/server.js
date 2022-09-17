@@ -1,11 +1,26 @@
 // Initialise Express.
 const express = require('express');
 const app = express();
+const port = 5000;
 
-app.get("/server", (req, res) => {
-    res.json({ "users": ["UserOne", "UserTwo"] })
+const user = [
+    {
+        userEmail: 'benjamin@login.ui.com',
+        userName: 'Aniket Rath',
+        userPosition: 'Site Developer'
+    },
+    {
+        userEmail: 'jameson@login.ui.com',
+        userName: 'Jameson Smith',
+        userPosition: 'Site Admin'
+    }
+]
+console.log(user);
+
+app.get("/server/login", (req, res) => {
+    res.json(user);
 })
 
-app.listen(5000, () => {
-    console.log("server has started at http://localhost:5000/server");
+app.listen(port, () => {
+    console.log("server has started at http://localhost:5000/server/login");
 })

@@ -3,8 +3,8 @@ import React from 'react'
 const Quote = () => {
     return (
 
-        <div class="relative w-2/3 -mt-20">
-            <div class="absolute inset-y-0 right-28 
+        <div className="relative w-2/3 -mt-20">
+            <div className="absolute inset-y-0 right-28 
             w-[80vh] h-[80vh] 
             outline outline-gray-200/30
             backdrop-blur-xl

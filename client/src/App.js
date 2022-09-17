@@ -1,31 +1,9 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import SignIn from './Pages/SignIn'
 
 function App() {
-
-  const [backendData, setBackendData] = useState([{}]);
-
-  useEffect(() => {
-    fetch("/server").then(
-      respose => respose.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
-
   return (
-    <div>
-      {
-        (typeof backendData.users === 'undefined') ?
-          (<p>Loading...</p>) :
-          (backendData.users.map((users, i) => (
-            <p key={i}>{users}</p>
-          )))
-      }
-
-    </div>
+    <SignIn />
   );
 }
 export default App;
