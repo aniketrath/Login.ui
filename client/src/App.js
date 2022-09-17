@@ -1,22 +1,31 @@
 import './App.css';
-//Basic Import
-import Background from './Components/Background';
-import Navigation from './Components/Navigation';
-import Body from './Components/Body';
-//Body Import
-import Dashoard from './Components/BodyComponents/Dashoard';
-import Quote from './Components/BodyComponents/Quote';
-import LoginPage from './Components/BodyComponents/LoginPage'
+import React, { useState, useEffect } from 'react';
+
 function App() {
+
+  const [backendData, setBackendData] = useState([{}]);
+
+  useEffect(() => {
+    fetch("/server").then(
+      respose => respose.json()
+    ).then(
+      data => {
+        setBackendData(data)
+      }
+    )
+  }, [])
+
   return (
-    <Background>
-      <Navigation />
-      <Body>
-        <LoginPage />
-        <Quote />
-      </Body>
-    </Background>
+    <div>
+      {
+        (typeof backendData.users === 'undefined') ?
+          (<p>Loading...</p>) :
+          (backendData.users.map((users, i) => (
+            <p key={i}>{users}</p>
+          )))
+      }
+
+    </div>
   );
 }
-
 export default App;
