@@ -1,15 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Dash from './Dashoard';
+import axios from 'axios';
 const LoginPage = () => {
 
     const userRef = useRef();
     const errRef = useRef();
-
-
+    const api = axios.create({
+        baseURL: `http://localhost:5000/user/login`
+    });
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errormsg, setErrorMsg] = useState("");
     const [success, setSuccess] = useState(false);
+
+    useEffect(() => {
+        api.get('/')
+            .then(res => {
+                console.log(res.data);
+            })
+    })
 
     useEffect(() => {
         userRef.current.focus();
@@ -42,7 +51,7 @@ const LoginPage = () => {
         <>{success ? (
             <Dash />
         ) : (
-            <div className='w-1/3 py-20 pr-28'>
+            <section className='w-1/3 py-20 pr-28'>
                 <div className='py-2'>
                     <h1 className='text-[4rem] font-bold'>
                         Welcome Back
@@ -50,20 +59,20 @@ const LoginPage = () => {
                     <h2 className='text-lg'>
                         Please enter your Details.
                     </h2>
-                    <h2 aria-live='assertive' id='errormsg' className='text-lg text-red-400'>
+                    <h2 ref={errRef} aria-live='assertive' id='errormsg' className='text-lg text-red-400'>
                         {errormsg}
                     </h2>
                 </div>
                 <form method="post">
                     <div className='py-2 pr-4 '>
-                        <label required htmlFor='email' className='text-sm'>Email:</label>
-                        <input ref={userRef} onChange={handleUser} value={username}
+                        <label htmlFor='email' className='text-sm'>Email:</label>
+                        <input required ref={userRef} onChange={handleUser} value={username}
                             className='h-12 min-w-full px-4 rounded-xl
                             bg-gray-500 placeholder:text-gray-200'
                             type="email" id="email" placeholder='Enter your Email.' />
                     </div>
                     <div className='py-2 pr-4'>
-                        <label required htmlFor='password' className='text-sm'>Password:</label>
+                        <label htmlFor='password' className='text-sm'>Password:</label>
                         <input onChange={handlePassCode} value={password}
                             className='h-12 min-w-full px-4 rounded-xl
                             bg-gray-500 placeholder:text-gray-200'
@@ -80,16 +89,15 @@ const LoginPage = () => {
                             type="submit">Sign In
                         </button>
                     </div>
-
                     <div className='py-4 flex '>
                         <h2 className='text-center'>Don't have an Account ? &nbsp;</h2>
                         <a href="/newuser"> Sign up.</a>
                     </div>
                 </form>
-            </div>
+            </section>
         )}
         </>
     )
 }
 
-export default LoginPage
+export default LoginPage;

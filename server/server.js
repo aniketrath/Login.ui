@@ -1,9 +1,15 @@
 // Initialise Express.
 const express = require('express');
+
 const app = express();
 const port = 5000;
 
-const user = [
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
+
+const userDetails = [
     {
         userEmail: 'benjamin@login.ui.com',
         userName: 'Aniket Rath',
@@ -15,12 +21,12 @@ const user = [
         userPosition: 'Site Admin'
     }
 ]
-console.log(user);
+console.log(userDetails);
 
-app.get("/server/login", (req, res) => {
-    res.json(user);
+app.get("/user/login", (req, res) => {
+    res.json(userDetails);
 })
 
 app.listen(port, () => {
-    console.log("server has started at http://localhost:5000/server/login");
+    console.log("server has started at http://localhost:5000/user/login");
 })
