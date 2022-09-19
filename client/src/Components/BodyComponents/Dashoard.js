@@ -1,6 +1,6 @@
-import React from 'react'
-
+import React from 'react';
 const Dashoard = () => {
+
     return (
         <div className='w-1/3 py-24 '>
             <div className='py-2'>
@@ -17,7 +17,7 @@ const Dashoard = () => {
             <div className='py-6'>
                 <h1 className='text-xl font-light'>User Name: Aniket Rath</h1>
                 <h1 className='text-xl font-light'>User Email: benjamin@login.ui.com</h1>
-                <h1 className='text-xl font-light'>User Position : Site Admin</h1>
+                <h1 className='text-xl font-light'>User Position :Site Developer</h1>
             </div>
 
             <div className='pr-14'>
@@ -26,7 +26,7 @@ const Dashoard = () => {
                     type="submit">Sign Out
                 </a>
             </div>
-        </div >
+        </div>
     )
 }
 

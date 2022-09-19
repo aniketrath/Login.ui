@@ -1,22 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Dash from './Dashoard';
 import axios from 'axios';
+
 const LoginPage = () => {
 
     const userRef = useRef();
     const errRef = useRef();
-    const api = axios.create({
-        baseURL: `http://localhost:5000/user/login`
-    });
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errormsg, setErrorMsg] = useState("");
     const [success, setSuccess] = useState(false);
 
+    const Uname = useRef();
+    const Upwd = useRef();
+    const Uemail = useRef();
+    const Uposition = useRef();
+    const api = axios.create({
+        baseURL: `http://localhost:5000/user/`
+    });
+
     useEffect(() => {
-        api.get('/')
+        api.get('/login')
             .then(res => {
-                console.log(res.data);
+                Uemail.current = res.data.userEmail;
+                Uname.current = res.data.userName;
+                Upwd.current = res.data.userPassword;
+                Uposition.current = res.data.userPosition;
             })
     })
 
@@ -30,7 +40,7 @@ const LoginPage = () => {
     }, [username, password])
 
     const handleUser = event => {
-        const result = event.target.value.replace(/[^a-z]/gi, "");
+        const result = event.target.value;
         setUsername(result);
     }
 
@@ -40,11 +50,13 @@ const LoginPage = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(username, password);
-        setSuccess(true);
+        e.preventDefault();
         setUsername('');
         setPassword('');
+        if (Uemail.current === username && Upwd.current === password) {
+            setSuccess(true);
+        }
+
     };
 
     return (
