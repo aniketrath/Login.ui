@@ -61,7 +61,10 @@ const LoginPage = () => {
 
     return (
         <>{success ? (
-            <Dash />
+            <Dash
+                userEmail={Uemail.current} userName={Uname.current}
+                userPosition={Uposition.current}
+            />
         ) : (
             <section className='w-1/3 py-20 pr-28'>
                 <div className='py-2'>

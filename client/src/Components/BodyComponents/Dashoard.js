@@ -1,5 +1,5 @@
 import React from 'react';
-const Dashoard = () => {
+const Dashoard = ({ userEmail, userName, userPosition }) => {
 
     return (
         <div className='w-1/3 py-24 '>
@@ -15,9 +15,9 @@ const Dashoard = () => {
             </div>
             <h1 className='text-2xl'>User Details:</h1>
             <div className='py-6'>
-                <h1 className='text-xl font-light'>User Name: Aniket Rath</h1>
-                <h1 className='text-xl font-light'>User Email: benjamin@login.ui.com</h1>
-                <h1 className='text-xl font-light'>User Position :Site Developer</h1>
+                <h1 className='text-xl font-light'>User Name:{userName}</h1>
+                <h1 className='text-xl font-light'>User Email:{userEmail}</h1>
+                <h1 className='text-xl font-light'>User Position :{userPosition}</h1>
             </div>
 
             <div className='pr-14'>
