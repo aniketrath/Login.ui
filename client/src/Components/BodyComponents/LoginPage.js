@@ -58,12 +58,16 @@ const LoginPage = () => {
         }
 
     };
+    const userCred = {
+        email: Uemail.current,
+        name: Uname.current,
+        position: Uposition.current
+    };
 
     return (
         <>{success ? (
             <Dash
-                userEmail={Uemail.current} userName={Uname.current}
-                userPosition={Uposition.current}
+                Credentials={userCred}
             />
         ) : (
             <section className='w-1/3 py-20 pr-28'>
