@@ -5,10 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
 
-    const navigate = useNavigate()
-
-
-
+    const navigate = useNavigate();
     const userRef = useRef();
     const errRef = useRef();
 
@@ -37,7 +34,7 @@ const LoginPage = () => {
         api.post('/user/login', details)
             .then((res) => {
                 saveDetails(res.data);
-                navigate("/dashboard")
+                navigate("/userdashboard")
             }).catch((err) => {
                 dispatch({ type: DETAILS.ERROR, payload: err.response.data })
             })
