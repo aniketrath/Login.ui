@@ -25,7 +25,7 @@ app.post("/user/login", (req, res) => {
         return res.status(400).json("Username and Password Required.")
     }
 
-    if (req.body.username === USER_DETAILS.userName && req.body.password === USER_DETAILS.userPassword) {
+    if (req.body.username === USER_DETAILS.userEmail && req.body.password === USER_DETAILS.userPassword) {
         res.status(200).json(USER_DETAILS);
     } else {
         res.status(404).json("Invalid Cred.")
