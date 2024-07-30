@@ -11,24 +11,16 @@ const DETAILS_DEFAULT = {
     [DETAILS.ERROR]: '',
 }
 
-const saveDetails = (details) => {
-    localStorage.setItem(DETAILS.USERNAME, details[DETAILS.USERNAME]);
-    localStorage.setItem(DETAILS.PASSWORD, details[DETAILS.PASSWORD]);
-}
-
 const reducer = (state, action) => {
 
     switch (action.type) {
-        case DETAILS.PASSWORD: {
-            if (isNaN(action.payload)) {
-                return state;
-            }
+        case DETAILS.PASSWORD:
             return {
                 ...state,
                 [DETAILS.ERROR]: '',
                 [action.type]: action.payload,
+
             }
-        }
 
         case DETAILS.USERNAME:
             return {
@@ -49,6 +41,5 @@ const reducer = (state, action) => {
 export {
     DETAILS,
     DETAILS_DEFAULT,
-    saveDetails,
     reducer
 }

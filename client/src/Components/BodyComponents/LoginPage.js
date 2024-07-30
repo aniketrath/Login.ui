@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useReducer } from 'react'
 import axios from 'axios';
-import { DETAILS, DETAILS_DEFAULT, reducer, saveDetails } from '../../reducer/LoginReducer';
+import { DETAILS, DETAILS_DEFAULT, reducer } from '../../reducer/LoginReducer';
 import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
@@ -12,7 +12,7 @@ const LoginPage = () => {
     const [details, dispatch] = useReducer(reducer, DETAILS_DEFAULT);
 
     const api = axios.create({
-        baseURL: `http://localhost:5000/`
+        baseURL: `http://localhost:8000/`
     });
 
     useEffect(() => {
@@ -31,16 +31,18 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        api.post('/user/login', details)
+        api.post('/auth/login', details)
             .then((res) => {
-                saveDetails(res.data);
-                navigate("/userdashboard")
-            }).catch((err) => {
-                dispatch({ type: DETAILS.ERROR, payload: err.response.data })
+                console.log(res.data);
+                localStorage.setItem("token", res.data.token);
+                navigate("/userdashboard");
             })
-
+            .catch((err) => {
+                const errorMessage = err.response ? err.response.data.error || 'An error occurred' : 'An error occurred';
+                console.error('Login failed:', err);
+                dispatch({ type: DETAILS.ERROR, payload: errorMessage });
+            });
     };
-    console.log(details);
     return (
 
         <section className='w-1/3 py-20 pr-28'>

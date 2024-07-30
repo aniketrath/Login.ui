@@ -1,41 +1,30 @@
-// Initialise Express.
 const express = require('express');
-const cors = require("cors")
-
-const app = express();
-const port = 5000;
-
-app.use(cors())
-app.use(express.json())
+const protected_routes = require('./Routes/protected');
+const auth_routes = require('./Routes/auth')
+const connectDB = require('./Config/dbConfig');
+const cors = require('cors');
 
 
-const USER_DETAILS =
-{
-    userEmail: 'benjamin@login.ui.com',
-    userPassword: '9556479373',
-    userName: 'Aniket Rath',
-    userPosition: 'Site Developer'
-}
+// Start Server Settings
+const server = express();
+server.use(cors());
+connectDB();
 
+server.use(express.json());
+const PORT = 8000;
 
-app.post("/user/login", (req, res) => {
-    if (
-        !req.body.username || !req.body.password
-    ) {
-        return res.status(400).json("Username and Password Required.")
+// Use user routes with prefix /app
+server.use('/auth', auth_routes);
+server.use('/secure', protected_routes);
+
+// Start Server in try-catch
+const start = async () => {
+    try {
+        server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
     }
+};
 
-    if (req.body.username === USER_DETAILS.userEmail && req.body.password === USER_DETAILS.userPassword) {
-        res.status(200).json(USER_DETAILS);
-    } else {
-        res.status(404).json("Invalid Cred.")
-    }
-
-})
-app.get("/user/logindetails", (req, res) => {
-    res.json(req.username, req.password);
-})
-
-app.listen(port, () => {
-    console.log("server has started at http://localhost:5000/user/login");
-})
+start();
